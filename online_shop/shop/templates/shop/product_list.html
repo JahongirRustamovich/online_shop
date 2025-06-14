@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-xl font-semibold mb-4">Mahsulotlar</h2>
+<a href="{% url 'admin_product_create' %}" class="bg-green-500 text-white px-4 py-2 rounded">Yangi mahsulot</a>
+
+<table class="mt-4 w-full border">
+    <tr class="bg-gray-200">
+        <th>Rasm</th><th>Nomi</th><th>Narxi</th><th>Holat</th><th>Amallar</th>
+    </tr>
+    {% for product in products %}
+    <tr class="border-b">
+        <td>
+            {% if product.image %}
+            <img src="{{ product.image.url }}" class="h-16">
+            {% endif %}
+        </td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }} so'm</td>
+        <td>{{ product.available|yesno:"Mavjud,Eskirgan" }}</td>
+        <td>
+            <a href="{% url 'admin_product_update' product.pk %}" class="text-blue-600">✏️</a> |
+            <a href="{% url 'admin_product_delete' product.pk %}" class="text-red-600">🗑️</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+
+
+

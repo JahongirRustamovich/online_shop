@@ -1,0 +1,24 @@
+# Python cache fayllar
+__pycache__/
+*.py[cod]
+
+# Virtual muhit
+.venv/
+env/
+
+# Django secret sozlamalar
+.env
+
+# Bazaga oid fayllar
+*.sqlite3
+
+# VSCode fayllar
+.vscode/
+
+# OS'ga xos fayllar
+.DS_Store
+Thumbs.db
+
+
+
+

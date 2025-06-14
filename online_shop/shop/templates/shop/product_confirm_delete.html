@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-xl font-semibold">Mahsulotni o‘chirish</h2>
+<p>{{ product.name }} nomli mahsulotni o‘chirmoqchimisiz?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Ha, o‘chirish</button>
+    <a href="{% url 'admin_product_list' %}" class="ml-4">Bekor qilish</a>
+</form>
+{% endblock %}
+
+
