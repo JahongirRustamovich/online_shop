@@ -2,6 +2,21 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product
 from .forms import ProductForm
 from django.contrib.auth.decorators import login_required
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import ProductSerializer
+from rest_framework import generics
+
+
+class ProductListAPIView(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+@api_view(['GET'])
+def product_list(request):
+    products = Product.objects.all()
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
 
 
 def index(request):
@@ -51,5 +66,7 @@ def admin_product_delete(request, pk):
         product.delete()
         return redirect('admin_product_list')
     return render(request, 'shop/admin/product_confirm_delete.html', {'product': product})
+
+
 
 
